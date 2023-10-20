@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 18, 2023 at 07:22 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 7.4.33
+-- Waktu pembuatan: 20 Okt 2023 pada 18.41
+-- Versi server: 10.4.27-MariaDB
+-- Versi PHP: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,16 +20,14 @@ SET time_zone = "+00:00";
 --
 -- Database: `persediaan`
 --
-CREATE DATABASE IF NOT EXISTS `persediaan` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `persediaan`;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_daftaran`
+-- Struktur dari tabel `tbl_barang`
 --
 
-CREATE TABLE `tbl_daftaran` (
+CREATE TABLE `tbl_barang` (
   `kd_barang` varchar(10) NOT NULL,
   `nama_barang` varchar(100) NOT NULL,
   `satuan` int(11) NOT NULL,
@@ -38,14 +36,47 @@ CREATE TABLE `tbl_daftaran` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumping data untuk tabel `tbl_barang`
+--
+
+INSERT INTO `tbl_barang` (`kd_barang`, `nama_barang`, `satuan`, `jumlah`, `harga`) VALUES
+('1', 'Aqua', 2, 19, 19000),
+('2', 'Indomie', 1, 20, 2500);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tbl_satuan`
+--
+
+CREATE TABLE `tbl_satuan` (
+  `kd_satuan` int(11) NOT NULL,
+  `nama_satuan` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `tbl_satuan`
+--
+
+INSERT INTO `tbl_satuan` (`kd_satuan`, `nama_satuan`) VALUES
+(1, 'Pcs'),
+(2, 'Galon');
+
+--
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `tbl_daftaran`
+-- Indeks untuk tabel `tbl_barang`
 --
-ALTER TABLE `tbl_daftaran`
+ALTER TABLE `tbl_barang`
   ADD PRIMARY KEY (`kd_barang`);
+
+--
+-- Indeks untuk tabel `tbl_satuan`
+--
+ALTER TABLE `tbl_satuan`
+  ADD PRIMARY KEY (`kd_satuan`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
