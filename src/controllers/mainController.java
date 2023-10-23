@@ -6,6 +6,7 @@
 package controllers;
 
 import views.FormBarang;
+import views.FormSatuan;
 
 /**
  *
@@ -13,13 +14,14 @@ import views.FormBarang;
  */
 public class mainController {
     
-    public static FormBarang pendataan;
+//    public static FormBarang pendataan;
+    public static FormSatuan pendataan;
     
     public static void main(String[] args){
         
         // testing crud barang 
 
-        pendataan = new FormBarang();
+        pendataan = new FormSatuan();
                 
         pendataan.setVisible(true);
                 
