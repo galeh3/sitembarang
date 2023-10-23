@@ -19,7 +19,7 @@ public class Satuan {
     public Integer id;
     public String nama;
     
-    private final String nama_tabel = "tbl_satuan";
+    public final String nama_tabel = "tbl_satuan";
     private final koneksi koneksi = new koneksi();
     
     private List<Satuan> list;

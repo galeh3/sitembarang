@@ -7,7 +7,7 @@ package views;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import controllers.barangController;
+import controllers.BarangController;
 import java.util.List;
 import javax.swing.ComboBoxModel;
 import models.Barang;
@@ -17,6 +17,7 @@ import models.koneksi;
 public class FormBarang extends javax.swing.JFrame {
     private final Barang barang = new Barang();
     private final Satuan satuan = new Satuan();
+    private final BarangController barangController = new BarangController();
 
     public FormBarang() {
         initComponents();
@@ -194,17 +195,6 @@ public class FormBarang extends javax.swing.JFrame {
                 .addContainerGap(48, Short.MAX_VALUE))
         );
 
-        jTableBarang.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
         jTableBarang.getTableHeader().setReorderingAllowed(false);
         jTableBarang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -239,8 +229,13 @@ public class FormBarang extends javax.swing.JFrame {
 
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
         // TODO add your handling code here:
-        String pesan = barang.insert(kdbarang.getText(), nama.getText(), satuan.findId(jComboBoxSatuan.getItemAt(jComboBoxSatuan.getSelectedIndex())).toString(), jumlah.getText(), harga.getText());
-        JOptionPane.showMessageDialog(null, pesan);
+        Barang barang = new Barang();
+        barang.kode = kdbarang.getText();
+        barang.nama = nama.getText();
+        barang.satuan = satuan.findId(jComboBoxSatuan.getItemAt(jComboBoxSatuan.getSelectedIndex())).toString();
+        barang.jumlah = jumlah.getText();
+        barang.harga = harga.getText();
+        JOptionPane.showMessageDialog(null, barangController.insertBarang(barang));
         load_table();
         kosong();
         
@@ -248,8 +243,13 @@ public class FormBarang extends javax.swing.JFrame {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
       
-        String pesan = barang.update(kdbarang.getText(), nama.getText(), satuan.findId(jComboBoxSatuan.getItemAt(jComboBoxSatuan.getSelectedIndex())).toString(), jumlah.getText(), harga.getText());
-        JOptionPane.showMessageDialog(null, pesan);
+        Barang barang = new Barang();
+        barang.kode = kdbarang.getText();
+        barang.nama = nama.getText();
+        barang.satuan = satuan.findId(jComboBoxSatuan.getItemAt(jComboBoxSatuan.getSelectedIndex())).toString();
+        barang.jumlah = jumlah.getText();
+        barang.harga = harga.getText();
+        JOptionPane.showMessageDialog(null, barangController.updateBarang(barang));
         load_table();
         kosong();
     }//GEN-LAST:event_btnUpdateActionPerformed
@@ -261,7 +261,7 @@ public class FormBarang extends javax.swing.JFrame {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        String pesan = barang.delete(kdbarang.getText());
+        String pesan = barangController.deleteBarang(kdbarang.getText());
         JOptionPane.showMessageDialog(null, pesan);
         load_table();
         kosong();

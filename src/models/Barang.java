@@ -21,6 +21,8 @@ public class Barang {
     private Object[][] list;
     private String pesan;
     
+    public String kode, nama, nama_satuan, satuan, jumlah, harga;
+    
     public Object[][] getList(){
         return list;
     }
@@ -36,7 +38,7 @@ public class Barang {
             ResultSet rset;
             
             try {
-                SQLStatemen = "select kd_barang, nama_barang, nama_satuan as satuan, jumlah, harga from " + nama_tabel + " inner join tbl_satuan on " + nama_tabel + ".satuan = tbl_satuan.kd_satuan";
+                SQLStatemen = "select kd_barang, nama_barang, nama_satuan as satuan, jumlah, harga from " + nama_tabel + " inner join tbl_satuan on " + nama_tabel + ".satuan = " + Satuan.class.newInstance().nama_tabel + ".kd_satuan ORDER BY kd_barang ASC";
                 preparedStatement = connection.prepareStatement(SQLStatemen);
                 rset = preparedStatement.executeQuery();
                 
@@ -60,6 +62,9 @@ public class Barang {
             } catch (SQLException ex){
                 adaKesalahan = true;
                 pesan = "Tidak dapat membaca data\n"+ex.getMessage();
+            } catch (Exception e){
+                adaKesalahan = true;
+                pesan = "Error\n"+e.getMessage();
             }
         } else {
             adaKesalahan = true;
